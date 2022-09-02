@@ -1,0 +1,22 @@
+.header {
+    height: 75px;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    background-color: #181829;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.351);
+}
+
+.logoContainer {
+    margin-left: 25px;
+    height: 100%;
+    width: auto;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+}
