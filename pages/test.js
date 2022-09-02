@@ -7,10 +7,10 @@ const ws_port = 3001
 /*import React from 'react'
 
 export default class test extends React.Component {
-	componentDidMount() {
-		console.log('Did mount')
+  componentDidMount() {
+    console.log('Did mount')
 
-		const socket = new WebSocket('ws://localhost:3000');
+    const socket = new WebSocket('ws://localhost:3000');
 
     // Connection opened
     socket.addEventListener('open', function (event) {
@@ -22,74 +22,74 @@ export default class test extends React.Component {
         console.log('Message from server ', event.data);
     });
 
-		this.socket = socket
-	}
+    this.socket = socket
+  }
 
-	sendMessage() {
-		this.socket.send(
-			document.getElementById('input').innerHTML
-		);
-	}
+  sendMessage() {
+    this.socket.send(
+      document.getElementById('input').innerHTML
+    );
+  }
 
-	render() {
-		return (
-			<div>
-				<Head>
-					<title>chat-app-test</title>
-					<meta name='description' content='Anonymous chat application' />
-					<link rel='icon' href='/favicon.ico' />
-				</Head>
-				<main>
-					<input id='input' type='text'></input>
-					<button onClick={this.sendMessage}>Send Msg</button>
-				</main>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div>
+        <Head>
+          <title>chat-app-test</title>
+          <meta name='description' content='Anonymous chat application' />
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
+        <main>
+          <input id='input' type='text'></input>
+          <button onClick={this.sendMessage}>Send Msg</button>
+        </main>
+      </div>
+    )
+  }
 }*/
 
 
 
 const Test = () => {
-	var socket = null
+  var socket = null
 
-	useEffect(() => {
-		console.log('Did mount')
+  useEffect(() => {
+    console.log('Did mount')
 
-		socket = new WebSocket(`ws://localhost:${ws_port}`);
+    socket = new WebSocket(`ws://localhost:${ws_port}`);
 
-    	// Connection opened
-    	socket.addEventListener('open', function (event) {
-    	    console.log('Connected to WS Server')
-    	});
-	
-    	// Listen for messages
-    	socket.addEventListener('message', function (event) {
-    	    console.log('Message from server ', event.data);
-    	});
-	}, [])
+      // Connection opened
+      socket.addEventListener('open', function (event) {
+          console.log('Connected to WS Server')
+      });
+  
+      // Listen for messages
+      socket.addEventListener('message', function (event) {
+          console.log('Message from server ', event.data);
+      });
+  }, [])
 
-	const sendMessage = () => {
-		const text = document.getElementById('text-input').value
-		
-		console.log(text)
+  const sendMessage = () => {
+    const text = document.getElementById('text-input').value
+    
+    console.log(text)
 
-		socket.send(text);
-	}
+    socket.send(text);
+  }
 
-	return (
-		<div>
-			<Head>
-				<title>chat-app-test</title>
-				<meta name='description' content='Anonymous chat application' />
-				<link rel='icon' href='/favicon.ico' />
-			</Head>
-			<main>
-				<input id='text-input' type='text'></input>
-				<button onClick={sendMessage}>Send Msg</button>
-			</main>
-		</div>
-	)
+  return (
+    <div>
+      <Head>
+        <title>chat-app-test</title>
+        <meta name='description' content='Anonymous chat application' />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <main>
+        <input id='text-input' type='text'></input>
+        <button onClick={sendMessage}>Send Msg</button>
+      </main>
+    </div>
+  )
 }
 
 export default Test

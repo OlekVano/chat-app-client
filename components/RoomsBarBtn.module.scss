@@ -1,31 +1,31 @@
 @import '../styles/colors';
 
 .main {
-    height: 100px;
-    width: 100%;
-    margin: 0px auto;
-    border-radius: 0px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
+  height: 100px;
+  width: 100%;
+  margin: 0px auto;
+  border-radius: 0px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 
-    transition: background-color 0.2s;
+  transition: background-color 0.2s;
 }
 
 .text {
-    width: 80%;
-    user-select: none;
-    text-align: left;
-    color: $light-gray;
-    font-size: 1vw;
+  width: 80%;
+  user-select: none;
+  text-align: left;
+  color: $light-gray;
+  font-size: 1vw;
 }
 
 .main:hover {
-    background-color: $main-light;
+  background-color: $main-light;
 }
 
 .main:focus {
-    background-color: red;
+  background-color: red;
 }
