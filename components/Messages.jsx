@@ -3,11 +3,14 @@ import * as styles from './Messages.module.scss'
 
 const Messages = ({ id, rooms, socket }) => {
   const [password, setPassword] = useState()
+  const [messages, setMessages] = useState([])
 
   useEffect(() => {
     for (var i = 0; i < rooms.length; i++) {
       if (rooms[i].id === id) {
         setPassword(rooms[i].password)
+        setMessages(rooms[i].messages)
+        break
       }
     }
   }, [])
@@ -26,7 +29,8 @@ const Messages = ({ id, rooms, socket }) => {
   return (
     <div className={styles.main}>
       <div className={styles.messagesContainer}>
-        {rooms.find((item => item.id === id)).messages.map(({from, text}, i) => {
+        {
+        messages.map(({from, text}, i) => {
           return <div className={styles.messageContainer} key={i}>
             <span className={styles.from}>{from}:</span>
             <span className={styles.text}>{text}</span>

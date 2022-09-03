@@ -8,6 +8,8 @@ import CreateRoom from '../../components/CreateRoom'
 import JoinRoom from '../../components/JoinRoom'
 import Messages from '../../components/Messages'
 
+import Head from 'next/head'
+
 const CreateRoomPage = () => {
   const [path, setPath] = useState()
   const [loading, setLoading] = useState(true)
@@ -95,12 +97,17 @@ const CreateRoomPage = () => {
 
   return (
     <div className='roomsPage'>
+      <Head>
+        <title>Datura</title>
+        <meta name='description' content='The first trully anonymous messaging app' />
+        <link rel='icon' href='/images/daturaLogo.png' />
+      </Head>
       <Header />
       <div className='roomsPageContainer'>
         <RoomsBar rooms={rooms} />
         <main className='roomsPageMain'>
         {
-          loading ?
+          loading || path === '/rooms' ?
           <></>
           : path === '/rooms/create' ? 
             <CreateRoom socket={socket} joinRooms={joinRooms} rooms={rooms} setRooms={setRooms} />
