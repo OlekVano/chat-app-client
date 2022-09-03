@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.logoContainer}>
-        <Link href='./'>
+        <Link href='../'>
           <div>
             <Image src={daturaString}
               height='100%'
