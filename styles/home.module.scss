@@ -1,0 +1,31 @@
+.mainContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.logoContainer {
+  width: 50%;
+}
+
+.halfContainer {
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title,
+.subtitle {
+  color: white;
+  text-align: center;
+}
+
+.title {
+  font-size: 5vw;
+  margin-bottom: 0;
+}
+
+.subtitle {
+  margin-bottom: 40px;
+}
