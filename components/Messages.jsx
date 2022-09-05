@@ -13,7 +13,7 @@ const Messages = ({ id, rooms, socket }) => {
         break
       }
     }
-  }, [])
+  }, [id])
 
   const sendMessage = () => {
     const text = document.getElementById('message-input').value.trim()
