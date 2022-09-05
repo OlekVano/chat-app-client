@@ -6,7 +6,7 @@ import Header from '../../components/Header'
 import RoomsBar from '../../components/RoomsBar'
 import CreateRoom from '../../components/CreateRoom'
 import JoinRoom from '../../components/JoinRoom'
-import Messages from '../../components/Messages'
+import Room from '../../components/Room'
 
 import Head from 'next/head'
 
@@ -115,7 +115,7 @@ const CreateRoomPage = () => {
             <JoinRoom socket={socket} joinRooms={joinRooms} rooms={rooms} setRooms={setRooms}/>
           : path === '/rooms/@me' || path === '' ?
           <></>
-          : <Messages id={path.replace('/rooms/', '')} rooms={rooms} socket={socket} />
+          : <Room id={path.replace('/rooms/', '')} rooms={rooms} socket={socket} />
         }
         </main>
       </div>

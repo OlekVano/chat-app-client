@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import * as styles from './Messages.module.scss'
+import * as styles from './Room.module.scss'
 
-const Messages = ({ id, rooms, socket }) => {
+const Room = ({ id, rooms, socket }) => {
   const [password, setPassword] = useState()
   const [messages, setMessages] = useState([])
 
@@ -51,4 +51,4 @@ const Messages = ({ id, rooms, socket }) => {
   )
 }
 
-export default Messages
+export default Room
