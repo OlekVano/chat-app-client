@@ -16,7 +16,10 @@ const Room = ({ id, rooms, socket }) => {
   }, [id])
 
   const sendMessage = () => {
-    const text = document.getElementById('message-input').value.trim()
+    const input = document.getElementById('message-input')
+    const text = input.value.trim()
+
+    if (text === '') return
 
     socket.send(JSON.stringify({
       message: text,
@@ -24,6 +27,8 @@ const Room = ({ id, rooms, socket }) => {
       password: password,
       from: '<Anonymous />'
     }))
+
+    input.value = ''
   }
 
   return (
