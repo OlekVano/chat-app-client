@@ -3,4 +3,17 @@
 .main {
   width: 20%;
   background-color: $main-dark;
+  overflow-y: auto;
+}
+
+.main::-webkit-scrollbar {
+  width: 5px;
+  padding-left: 2px;
+}
+.main::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.main::-webkit-scrollbar-thumb {
+  background: rgb(64, 50, 85);
+  border-radius: 10px;
 }

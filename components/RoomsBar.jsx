@@ -14,7 +14,7 @@ const RoomsBar = ({ rooms }) => {
 			  text='Create Room'
         link='./create'
       />
-      <div>
+      <div className={styles.slider}>
         {rooms.map(({name, id}, i) => {
 		      return <RoomsBarBtn
             text={name}
