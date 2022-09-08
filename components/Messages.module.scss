@@ -1,0 +1,23 @@
+.messagesContainer {
+  flex-grow: 1;
+  color: white;
+  margin-left: 15px;
+  padding-top: 10px;
+  overflow-y: auto;
+}
+
+.messagesContainer::-webkit-scrollbar {
+  width: 5px;
+  padding-left: 2px;
+}
+.messagesContainer::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.messagesContainer::-webkit-scrollbar-thumb {
+  background: rgb(64, 50, 85);
+  border-radius: 10px;
+}
+
+.messageContainer {
+  margin-top: 15px;
+}

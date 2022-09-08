@@ -5,6 +5,19 @@ import { API_URL } from '../consts'
 import Btn1 from './Btn1'
 
 const CreateForm = ({ socket, joinRooms, rooms, setRooms }) => {
+  const randomKey = (len) => {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < len; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    console.log(`Key generated: ${result}`)
+
+    return result;
+}
+
   const createRoom = async () => {
     //const name = document.getElementById('name-input').value.trim()
     const password = document.getElementById('password-input').value.trim()
@@ -28,7 +41,7 @@ const CreateForm = ({ socket, joinRooms, rooms, setRooms }) => {
     
     if (res.status === 200) {
       const id = (await res.json())._id
-      const newRooms = [...rooms, {id: id, password: password, name: id, messages: []}]
+      const newRooms = [...rooms, {id: id, password: password, name: id, messages: [], key: randomKey(12)}]
       setRooms(newRooms)
       window.localStorage.setItem('rooms', JSON.stringify(newRooms))
       joinRooms(socket, [{id: id, password: password}])
@@ -39,14 +52,6 @@ const CreateForm = ({ socket, joinRooms, rooms, setRooms }) => {
 
   return (
     <form className={styles.form}>
-      {/*<div className={styles.inputName}>Name</div>
-      <input id='name-input' className={styles.input}
-      	spellCheck='false'
-      	autoCapitalize='false'
-      	autoComplete='false'
-      	autoCorrect='false'
-      	type='text'>
-      </input>*/}
       <div className={styles.inputName}>Password</div>
       <input id='password-input' className={styles.input}
       	spellCheck='false'

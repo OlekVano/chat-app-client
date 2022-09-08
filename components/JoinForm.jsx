@@ -8,6 +8,7 @@ const JoinForm = ({ socket, joinRooms, rooms, setRooms }) => {
   const joinRoom = async () => {
     const id = document.getElementById('id-input').value.trim()
     const password = document.getElementById('password-input').value.trim()
+    const key = document.getElementById('key-input').value.trim()
 
     const url = `${API_URL}/rooms/verify`
 
@@ -35,7 +36,7 @@ const JoinForm = ({ socket, joinRooms, rooms, setRooms }) => {
       if (res_json.length === 0 || res_json[0] !== id) {
         return
       }
-      const newRooms = [...rooms, {id: id, password: password, name: id, messages: []}]
+      const newRooms = [...rooms, {id: id, password: password, name: id, messages: [], key: key}]
       setRooms(newRooms)
       window.localStorage.setItem('rooms', JSON.stringify(newRooms))
       joinRooms(socket, [{id: id, password: password}])
@@ -56,6 +57,14 @@ const JoinForm = ({ socket, joinRooms, rooms, setRooms }) => {
       </input>
       <div className={styles.inputName}>Password</div>
       <input id='password-input' className={styles.input}
+      	spellCheck='false'
+      	autoCapitalize='false'
+      	autoComplete='false'
+      	autoCorrect='false'
+      	type='text'>
+      </input>
+      <div className={styles.inputName}>Key</div>
+      <input id='key-input' className={styles.input}
       	spellCheck='false'
       	autoCapitalize='false'
       	autoComplete='false'

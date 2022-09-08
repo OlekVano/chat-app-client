@@ -21,21 +21,28 @@ const CreateRoomPage = () => {
     roomsRef.current = data
     _setRooms(data)
   }
+  
+  const decrypt = (encrypted, key) => {
+    const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
+    const applyKeyToChar = (code) => textToChars(key).reduce((a, b) => a ^ b, code);
+
+    return encrypted
+      .match(/.{1,2}/g)
+      .map((hex) => parseInt(hex, 16))
+      .map(applyKeyToChar)
+      .map((charCode) => String.fromCharCode(charCode))
+      .join("");
+  };
 
   const onMessage = (event) => {
     console.log('Message from server ', event.data);
     const json = JSON.parse(event.data)
     if ('message' in json) {
-      console.log('NEW MESSGE')
       var newRooms = [...roomsRef.current]
-      console.log(newRooms.length)
-      console.log(rooms.length)
       for (var i = 0; i < newRooms.length; i++) {
         console.log(newRooms[i].id, json.id)
         if (newRooms[i].id === json.id) {
-          console.log('CHANGE MESSGAE')
-          //newRooms[i].messages = [...newRooms[i].messages, {from: json.from, text: json.message}]
-          newRooms[i].messages.push({from: json.from, text: json.message})
+          newRooms[i].messages.push({from: json.from, text: decrypt(json.message, newRooms[i].key)})
           setRooms(newRooms)
           break
         }

@@ -8,12 +8,12 @@ import Image from 'next/image'
 
 const CreateRoom = ({ socket, joinRooms, rooms, setRooms }) => {
   return (
-		<div className={styles.main} >
-			<div className={styles.tabImage}>
-      	<Image src={daturaLogo}></Image>
+    <div className={styles.main} >
+      <div className={styles.tabImage}>
+        <Image src={daturaLogo}></Image>
       </div>
-			<CreateForm socket={socket} joinRooms={joinRooms} rooms={rooms} setRooms={setRooms} />
-		</div>
+      <CreateForm socket={socket} joinRooms={joinRooms} rooms={rooms} setRooms={setRooms} />
+    </div>
   )
 }
 
