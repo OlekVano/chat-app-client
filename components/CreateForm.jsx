@@ -13,8 +13,6 @@ const CreateForm = ({ socket, joinRooms, rooms, setRooms }) => {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
 
-    console.log(`Key generated: ${result}`)
-
     return result;
 }
 

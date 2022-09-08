@@ -35,24 +35,20 @@ const CreateRoomPage = () => {
   };
 
   const onMessage = (event) => {
-    console.log('Message from server ', event.data);
     const json = JSON.parse(event.data)
     if ('message' in json) {
       var newRooms = [...roomsRef.current]
       for (var i = 0; i < newRooms.length; i++) {
-        console.log(newRooms[i].id, json.id)
         if (newRooms[i].id === json.id) {
           newRooms[i].messages.push({from: json.from, text: decrypt(json.message, newRooms[i].key)})
           setRooms(newRooms)
           break
         }
       }
-      //console.log(rooms)
     }
   }
 
   const joinRooms = (socket, rooms) => {
-    console.log('JOIN ROOMS')
     socket.send(JSON.stringify({rooms: rooms}))
   }
 
@@ -66,7 +62,6 @@ const CreateRoomPage = () => {
 
     // Connection opened
     socket.addEventListener('open', (event) => {
-      console.log('Connected to WS Server')
       setSocket(socket)
       setLoading(false)
     });
@@ -76,7 +71,6 @@ const CreateRoomPage = () => {
 
   useEffect(() => {
     if (socket !== null) {
-      console.log(`Joining rooms:   ${rooms.length}`)
       joinRooms(socket, rooms)
     }
   }, [socket])
@@ -91,8 +85,6 @@ const CreateRoomPage = () => {
 
   useEffect(() => {
     if (rooms.length !== 0) {
-      console.log(`Rooms use effect::::::::`)
-      console.log(rooms)
       localStorage.setItem('rooms', JSON.stringify(rooms))
     }
   }, [rooms])

@@ -22,7 +22,6 @@ const Room = ({ id, rooms, socket }) => {
       if (rooms[i].id === id) {
         setPassword(rooms[i].password)
         setMessages(rooms[i].messages)
-        console.log(rooms[i].key)
         setKey(rooms[i].key)
         break
       }
@@ -45,9 +44,6 @@ const Room = ({ id, rooms, socket }) => {
   };
 
   const copyKey = () => {
-    console.log('copypypypyp')
-    console.log(key)
-    console.log(keyRef.current)
     navigator.clipboard.writeText(keyRef.current)
   }
 
