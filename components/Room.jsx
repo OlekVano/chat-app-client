@@ -6,7 +6,7 @@ import keyImg from '../public/images/key.png'
 
 import Image from 'next/image'
 
-const Room = ({ id, rooms, socket }) => {
+const Room = ({ id, rooms, socket, encrypt }) => {
   const [password, setPassword] = useState()
   const [messages, setMessages] = useState([])
   const [key, _setKey] = useState(null)
@@ -18,30 +18,12 @@ const Room = ({ id, rooms, socket }) => {
   }
 
   useEffect(() => {
-    for (var i = 0; i < rooms.length; i++) {
-      if (rooms[i].id === id) {
-        setPassword(rooms[i].password)
-        setMessages(rooms[i].messages)
-        setKey(rooms[i].key)
-        break
-      }
-    }
+    const room = rooms.find(e => e.id === id)
+    setPassword(room.password)
+    setMessages(room.messages)
+    setKey(room.key)
+    document.getElementById('message-input').focus()
   }, [id])
-
-
-
-  const encrypt = (text, key) => {
-    const textToChars = (text) => text.split('').map((c) => c.charCodeAt(0));
-    const byteHex = (n) => ('0' + Number(n).toString(16)).substr(-2);
-    const applyKeyToChar = (code) => textToChars(key).reduce((a, b) => a ^ b, code);
-  
-    return text
-      .split('')
-      .map(textToChars)
-      .map(applyKeyToChar)
-      .map(byteHex)
-      .join('');
-  };
 
   const copyKey = () => {
     navigator.clipboard.writeText(keyRef.current)

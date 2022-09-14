@@ -6,13 +6,13 @@ import daturaLogo from '../public/images/daturaLogo.png'
 
 import Image from 'next/image'
 
-const CreateRoom = ({ socket, joinRooms, rooms, setRooms }) => {
+const CreateRoom = ({ socket, joinRooms, addRoom }) => {
   return (
     <div className={styles.main} >
       <div className={styles.tabImage}>
         <Image src={daturaLogo}></Image>
       </div>
-      <CreateForm socket={socket} joinRooms={joinRooms} rooms={rooms} setRooms={setRooms} />
+      <CreateForm socket={socket} joinRooms={joinRooms} addRoom={addRoom} />
     </div>
   )
 }

@@ -2,7 +2,7 @@ import * as styles from './Messages.module.scss'
 
 const Messages = ({ messages }) => {
   return (
-    <div className={styles.messagesContainer}>
+    <div className={styles.messagesContainer} id='messagesContainer'>
       {
       messages.map(({from, text}, i) => {
         return <div className={styles.messageContainer} key={i}>

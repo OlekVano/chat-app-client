@@ -4,7 +4,7 @@ import { API_URL } from '../consts'
 
 import Btn1 from './Btn1'
 
-const JoinForm = ({ socket, joinRooms, rooms, setRooms }) => {
+const JoinForm = ({ socket, joinRooms, addRoom }) => {
   const joinRoom = async () => {
     const id = document.getElementById('id-input').value.trim()
     const password = document.getElementById('password-input').value.trim()
@@ -33,16 +33,10 @@ const JoinForm = ({ socket, joinRooms, rooms, setRooms }) => {
     
     if (res.status === 200) {
       const res_json = await res.json()
-      if (res_json.length === 0 || res_json[0] !== id) {
-        return
-      }
-      const newRooms = [...rooms, {id: id, password: password, name: id, messages: [], key: key}]
-      setRooms(newRooms)
-      window.localStorage.setItem('rooms', JSON.stringify(newRooms))
+      if (res_json.length === 0 || res_json[0] !== id) return
       joinRooms(socket, [{id: id, password: password}])
+      addRoom({id: id, password: password, name: id, messages: [], key: key})
     }
-
-    //socket.send('hello')
   }
 
   return (

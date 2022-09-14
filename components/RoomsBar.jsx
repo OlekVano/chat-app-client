@@ -19,7 +19,6 @@ const RoomsBar = ({ rooms }) => {
 		      return <RoomsBarBtn
             text={name}
             link={`./${id}`}
-            /*key={rooms.indexOf({name: name, id: id})}*/
             key={i}
           />
 	      })}

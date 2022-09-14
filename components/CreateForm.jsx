@@ -4,7 +4,7 @@ import { API_URL } from '../consts'
 
 import Btn1 from './Btn1'
 
-const CreateForm = ({ socket, joinRooms, rooms, setRooms }) => {
+const CreateForm = ({ socket, joinRooms, addRoom }) => {
   const randomKey = (len) => {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -17,13 +17,11 @@ const CreateForm = ({ socket, joinRooms, rooms, setRooms }) => {
 }
 
   const createRoom = async () => {
-    //const name = document.getElementById('name-input').value.trim()
     const password = document.getElementById('password-input').value.trim()
 
     const url = `${API_URL}/rooms/create`
 
     const json = {
-      //name: name,
       password: password
     }
     
@@ -37,15 +35,11 @@ const CreateForm = ({ socket, joinRooms, rooms, setRooms }) => {
       body: JSON.stringify(json) // body data type must match "Content-Type" header
     });
     
-    if (res.status === 200) {
-      const id = (await res.json())._id
-      const newRooms = [...rooms, {id: id, password: password, name: id, messages: [], key: randomKey(12)}]
-      setRooms(newRooms)
-      window.localStorage.setItem('rooms', JSON.stringify(newRooms))
-      joinRooms(socket, [{id: id, password: password}])
-    }
-
-    //socket.send('hello')
+    if (res.status !== 200) return 
+    
+    const id = (await res.json())._id
+    joinRooms(socket, [{id: id, password: password}])
+    addRoom({id: id, password: password, name: id, messages: [], key: randomKey(12)})
   }
 
   return (
