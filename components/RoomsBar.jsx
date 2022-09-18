@@ -9,10 +9,12 @@ const RoomsBar = ({ rooms, selected_id }) => {
       <RoomsBarBtn
 				text='Join Room'
         link='./join'
+        selected={selected_id === 'join'}
       />
       <RoomsBarBtn
 			  text='Create Room'
         link='./create'
+        selected={selected_id === 'create'}
       />
       <div className={styles.slider}>
         {rooms.map(({name, id}, i) => {

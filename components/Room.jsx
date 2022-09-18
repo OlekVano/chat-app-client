@@ -1,12 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
-import Messages from './Messages'
 import * as styles from './Room.module.scss'
 
-import keyImg from '../public/images/key.png'
+import { useEffect, useState, useRef } from 'react'
 
-import Image from 'next/image'
+import Messages from './Messages'
+import RoomHeader from './RoomHeader'
 
-const Room = ({ id, rooms, socket, encrypt }) => {
+const Room = ({ id, rooms, socket, encrypt, leaveRoom }) => {
   const [password, setPassword] = useState()
   const [messages, setMessages] = useState([])
   const [key, _setKey] = useState(null)
@@ -24,10 +23,6 @@ const Room = ({ id, rooms, socket, encrypt }) => {
     setKey(room.key)
     document.getElementById('message-input').focus()
   }, [id])
-
-  const copyKey = () => {
-    navigator.clipboard.writeText(keyRef.current)
-  }
 
   const sendMessage = () => {
     if (key === null) return
@@ -50,13 +45,7 @@ const Room = ({ id, rooms, socket, encrypt }) => {
 
   return (
     <div className={styles.main}>
-      <div className={styles.keyContainer} onClick={copyKey}>
-        <Image 
-          src={keyImg}
-          objectFit='contain'
-        >
-        </Image>
-      </div>
+      <RoomHeader roomName={id} leaveRoom={leaveRoom} socket={socket} id={id} />
       <Messages messages={messages} />
       <div className={styles.inputs}>
         <input id='message-input' className={styles.input}

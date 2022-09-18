@@ -7,6 +7,7 @@ import JoinRoom from '../../components/JoinRoom'
 import Room from '../../components/Room'
 
 import Head from 'next/head'
+import Router from 'next/router'
 
 const CreateRoomPage = () => {
   const [path, setPath] = useState('')
@@ -72,6 +73,20 @@ const CreateRoomPage = () => {
     }))
   }
 
+  const leaveRooms = (socket, rooms) => {
+    socket.send(JSON.stringify({
+      action: 'roomsLeave',
+      rooms: rooms
+    }))
+  }
+
+  const leaveRoom = (socket, id) => {
+    var newRooms = rooms.filter(room => room.id !== id)
+    setRooms(newRooms)
+    leaveRooms(socket, [{id: id}])
+    Router.push({pathname: '/rooms/'})
+  }
+
   //Called once, when the user navigates to /rooms/... url for the first time
   //Not called if the user navigates to /rooms/123 while being on /rooms/ or /rooms/456
   useEffect(() => {
@@ -124,7 +139,7 @@ const CreateRoomPage = () => {
       </Head>
       <Header />
       <div className='roomsPageContainer'>
-        <RoomsBar rooms={rooms} selected_id={path.replace('/rooms/', '') || ''} />
+        <RoomsBar rooms={rooms} selected_id={path.replace('/rooms/', '') || ''}/>
         <main className='roomsPageMain'>
         {
           loading || path === '/rooms' ?
@@ -135,7 +150,7 @@ const CreateRoomPage = () => {
             <JoinRoom socket={socket} joinRooms={joinRooms} rooms={rooms} setRooms={setRooms} addRoom={addRoom} />
           : path === '/rooms/@me' || path === '' ?
           <></>
-          : <Room id={path.replace('/rooms/', '')} socket={socket} encrypt={encrypt} rooms={rooms} />
+          : <Room id={path.replace('/rooms/', '')} socket={socket} encrypt={encrypt} rooms={rooms} setRooms={setRooms} leaveRoom={leaveRoom} />
         }
         </main>
       </div>

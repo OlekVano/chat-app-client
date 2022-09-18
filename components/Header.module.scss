@@ -1,3 +1,5 @@
+@import '../styles/colors';
+
 .header {
   height: 75px;
   padding: 0 16px;
@@ -5,7 +7,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: left;
-  background-color: #181829;
+  background-color: $main-darkest;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.351);
 }
 
