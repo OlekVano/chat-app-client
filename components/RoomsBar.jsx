@@ -3,7 +3,7 @@ import * as styles from './RoomsBar.module.scss'
 
 import RoomsBarBtn from './RoomsBarBtn'
 
-const RoomsBar = ({ rooms }) => {
+const RoomsBar = ({ rooms, selected_id }) => {
   return (
     <div className={styles.main} >
       <RoomsBarBtn
@@ -19,6 +19,7 @@ const RoomsBar = ({ rooms }) => {
 		      return <RoomsBarBtn
             text={name}
             link={`./${id}`}
+            selected={id === selected_id}
             key={i}
           />
 	      })}

@@ -9,7 +9,7 @@ import Room from '../../components/Room'
 import Head from 'next/head'
 
 const CreateRoomPage = () => {
-  const [path, setPath] = useState()
+  const [path, setPath] = useState('')
   const [loading, setLoading] = useState(true)
   const [socket, setSocket] = useState(null)
   const [rooms, _setRooms] = useState([])
@@ -121,7 +121,7 @@ const CreateRoomPage = () => {
       </Head>
       <Header />
       <div className='roomsPageContainer'>
-        <RoomsBar rooms={rooms} />
+        <RoomsBar rooms={rooms} selected_id={path.replace('/rooms/', '') || ''} />
         <main className='roomsPageMain'>
         {
           loading || path === '/rooms' ?
