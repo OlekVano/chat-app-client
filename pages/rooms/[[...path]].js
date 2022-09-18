@@ -66,7 +66,10 @@ const CreateRoomPage = () => {
   }
 
   const joinRooms = (socket, rooms) => {
-    socket.send(JSON.stringify({rooms: rooms}))
+    socket.send(JSON.stringify({
+      action: 'roomsJoin',
+      rooms: rooms
+    }))
   }
 
   //Called once, when the user navigates to /rooms/... url for the first time

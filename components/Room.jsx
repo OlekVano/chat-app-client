@@ -38,6 +38,7 @@ const Room = ({ id, rooms, socket, encrypt }) => {
     if (text === '' || text === null) return
 
     socket.send(JSON.stringify({
+      action: 'messageSend',
       message: encrypt(text, key),
       id: id,
       password: password,
