@@ -17,11 +17,27 @@ const Room = ({ id, rooms, socket, encrypt, leaveRoom }) => {
   }
 
   useEffect(() => {
+    const eventHandler = (event) => {
+      if (event.key !== 'Enter') return
+      sendMessage()
+    }
+
+    const input = document.getElementById('message-input')
+
+    input.addEventListener('keypress', eventHandler)
+    return () => {
+      input.removeEventListener('keypress', eventHandler)
+    }
+  })
+
+  useEffect(() => {
     const room = rooms.find(e => e.id === id)
     setPassword(room.password)
     setMessages(room.messages)
     setKey(room.key)
-    document.getElementById('message-input').focus()
+
+    const input = document.getElementById('message-input')
+    input.focus()
   }, [id])
 
   const sendMessage = () => {
