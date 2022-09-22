@@ -16,6 +16,10 @@ const Room = ({ id, rooms, socket, encrypt, leaveRoom }) => {
     _setKey(data)
   }
 
+  const copyKey = () => {
+    navigator.clipboard.writeText(key)
+  }
+
   useEffect(() => {
     const eventHandler = (event) => {
       if (event.key !== 'Enter') return
@@ -61,7 +65,7 @@ const Room = ({ id, rooms, socket, encrypt, leaveRoom }) => {
 
   return (
     <div className={styles.main}>
-      <RoomHeader roomName={id} leaveRoom={leaveRoom} socket={socket} id={id} />
+      <RoomHeader roomName={id} leaveRoom={leaveRoom} socket={socket} id={id} copyKey={copyKey} />
       <Messages messages={messages} />
       <div className={styles.inputs}>
         <input id='message-input' className={styles.input}

@@ -5,11 +5,7 @@ import leaveImg from '../public/images/leave.png'
 
 import Image from 'next/image'
 
-const RoomHeader = ({ leaveRoom, socket, id }) => {
-  const copyKey = () => {
-    navigator.clipboard.writeText(keyRef.current)
-  }
-
+const RoomHeader = ({ leaveRoom, socket, id, copyKey }) => {
   return (
     <div className={styles.main} >
       <div className={styles.btnContainer} onClick={copyKey}>
