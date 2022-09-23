@@ -90,7 +90,7 @@ const CreateRoomPage = () => {
   //Called once, when the user navigates to /rooms/... url for the first time
   //Not called if the user navigates to /rooms/123 while being on /rooms/ or /rooms/456
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:3001');
+    const socket = new WebSocket(process.env.WS_URL);
 
     //Loads rooms from the local storage if they are present
     const local_rooms = window.localStorage.getItem('rooms')

@@ -1,7 +1,5 @@
 import * as styles from './JoinCreateForm.module.scss'
 
-import { API_URL } from '../consts'
-
 import Btn1 from './Btn1'
 
 const CreateForm = ({ socket, joinRooms, addRoom }) => {
@@ -19,7 +17,7 @@ const CreateForm = ({ socket, joinRooms, addRoom }) => {
   const createRoom = async () => {
     const password = document.getElementById('password-input').value.trim()
 
-    const url = `${API_URL}/rooms/create`
+    const url = `${process.env.API_URL}/rooms/create`
 
     const json = {
       password: password
