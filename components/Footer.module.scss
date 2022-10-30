@@ -1,0 +1,12 @@
+.main {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+}
+
+@media screen and (min-width: 801px) {
+    .main {
+        display: none;
+    }
+}

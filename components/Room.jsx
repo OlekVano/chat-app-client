@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 
 import Messages from './Messages'
 import RoomHeader from './RoomHeader'
+import Footer from './Footer'
 
 const Room = ({ id, rooms, socket, encrypt, leaveRoom }) => {
   const [password, setPassword] = useState()

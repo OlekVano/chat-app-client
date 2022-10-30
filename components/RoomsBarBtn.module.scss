@@ -36,3 +36,9 @@
 .main:hover {
   background-color: $main-light;
 }
+
+@media screen and (max-width: 800px) {
+  .text {
+    text-align: center;
+  }
+}

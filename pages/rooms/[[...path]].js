@@ -5,6 +5,7 @@ import RoomsBar from '../../components/RoomsBar'
 import CreateRoom from '../../components/CreateRoom'
 import JoinRoom from '../../components/JoinRoom'
 import Room from '../../components/Room'
+import Footer from '../../components/Footer'
 
 import Head from 'next/head'
 import Router from 'next/router'
@@ -120,7 +121,7 @@ const CreateRoomPage = () => {
       <Header />
       <div className='roomsPageContainer'>
         <RoomsBar rooms={rooms} selected_id={path.replace('/rooms/', '') || ''}/>
-        <main className='roomsPageMain'>
+        <main className={`roomsPageMain ${path === '/rooms' ? 'roomsPageMainInvisible' : ''}`}>
         {
           loading || path === '/rooms' ?
           <></>
@@ -134,6 +135,7 @@ const CreateRoomPage = () => {
         }
         </main>
       </div>
+      <Footer path={path} />
     </div>
   )
 }
