@@ -9,6 +9,8 @@ import Room from '../../components/Room'
 import Head from 'next/head'
 import Router from 'next/router'
 
+import { encrypt, decrypt } from '../../encrypting-functions'
+
 const CreateRoomPage = () => {
   const [path, setPath] = useState('')
   const [loading, setLoading] = useState(true)
@@ -21,31 +23,6 @@ const CreateRoomPage = () => {
     roomsRef.current = data
     _setRooms(data)
   }
-  
-  const encrypt = (text, key) => {
-    const textToChars = (text) => text.split('').map((c) => c.charCodeAt(0));
-    const byteHex = (n) => ('0' + Number(n).toString(16)).substr(-2);
-    const applyKeyToChar = (code) => textToChars(key).reduce((a, b) => a ^ b, code);
-  
-    return text
-      .split('')
-      .map(textToChars)
-      .map(applyKeyToChar)
-      .map(byteHex)
-      .join('');
-  };
-
-  const decrypt = (encrypted, key) => {
-    const textToChars = (text) => text.split("").map((c) => c.charCodeAt(0));
-    const applyKeyToChar = (code) => textToChars(key).reduce((a, b) => a ^ b, code);
-
-    return encrypted
-      .match(/.{1,2}/g)
-      .map((hex) => parseInt(hex, 16))
-      .map(applyKeyToChar)
-      .map((charCode) => String.fromCharCode(charCode))
-      .join("");
-  };
 
   const addRoom = (room) => {
     var newRooms = [...roomsRef.current]
@@ -102,6 +79,9 @@ const CreateRoomPage = () => {
       setSocket(socket)
       setLoading(false)
     });
+
+    console.log(encrypt)
+    console.log(typeof encrypt)
   }, [])
 
   //When socket connection is established, joins rooms
