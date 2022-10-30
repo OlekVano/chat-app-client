@@ -74,8 +74,7 @@ const Room = ({ id, rooms, socket, encrypt, leaveRoom }) => {
           autoCapitalize='true'
           autoComplete='false'
           autoCorrect='true'
-          type='text'>
-        </input>
+          type='text' />
         <input type='button' value='Send' onClick={sendMessage} className={styles.send} />
       </div>
     </div>
