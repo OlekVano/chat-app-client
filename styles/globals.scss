@@ -34,6 +34,7 @@ html {
   flex-grow: 1;
   background: rgb(35,24,43);
   background: linear-gradient(140deg, rgba(35,24,43,1) 0%, rgba(35,30,70,1) 42%, rgba(35,31,73,1) 50%, rgba(35,26,70,1) 58%, rgba(35,24,43,1) 100%);
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 800px) {
