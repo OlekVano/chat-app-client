@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 
 import Messages from './Messages'
 import RoomHeader from './RoomHeader'
-import Footer from './Footer'
+import Btn2 from './Btn2'
 
 const Room = ({ id, rooms, socket, encrypt, leaveRoom }) => {
   const [password, setPassword] = useState()
@@ -75,7 +75,8 @@ const Room = ({ id, rooms, socket, encrypt, leaveRoom }) => {
           autoComplete='false'
           autoCorrect='true'
           type='text' />
-        <input type='button' value='Send' onClick={sendMessage} className={styles.send} />
+        {/*<input type='button' value='Send' onClick={sendMessage} className={styles.send} />*/}
+        <Btn2 func={sendMessage} text='Send' />
       </div>
     </div>
   )
